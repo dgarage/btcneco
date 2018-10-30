@@ -1,0 +1,60 @@
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+  <div class="sidebar-sticky">
+    <ul class="nav flex-column">
+      <li class="nav-item nav-item-side">
+        <a class="nav-link nav-link-side active" href="/admin">
+          <span><%= image_tag "home.png" %></span>
+          Dashboard <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a class="nav-link nav-link-side" href="/admin/subscriptions">
+          <span><%= image_tag "face.png" %></span>
+          Subscriptions
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a class="nav-link nav-link-side" href="/posts">
+          <span><%= image_tag "face.png" %></span>
+          Posts for Subscribers
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a id="link_tier" class="nav-link nav-link-side" href="/admin/tiers">
+          <span><%= image_tag "tiers.png" %></span>
+          Tiers
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a id="link_goal" class="nav-link nav-link-side" href="/admin/goals">
+          <span><%= image_tag "checkCircle.png" %></span>
+          Goals
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a class="nav-link nav-link-side" href="/admin/invoices">
+          <span><%= image_tag "bitcoin.png" %></span>
+          Invoices
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a class="nav-link nav-link-side" href="/admin/reports">
+          <span><%= image_tag "clipboard.png" %></span>
+          Reports
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a class="nav-link nav-link-side" href="/admin/email_templates">
+          <span><%= image_tag "mail.png" %></span>
+          Email Templates
+        </a>
+      </li>
+      <li class="nav-item nav-item-side">
+        <a id="link_settings" class="nav-link nav-link-side" href="/admin/settings">
+          <span><%= image_tag "settings.png" %></span>
+          Admin Settings
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

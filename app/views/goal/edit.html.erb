@@ -1,0 +1,16 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <h2>Editing Goal</h2>
+      <%= render 'goal_form', goal: @goal %>
+
+      <%= link_to 'Show', @goal, class: 'btn btn-primary' %>
+      <%= link_to 'Back', goals_path %>
+    </main>
+  </div>
+</div>

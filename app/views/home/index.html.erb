@@ -1,0 +1,175 @@
+<% content_for :opengraph do %>
+<meta property="og:url" content="<%= @domain %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<%= @name %>" />
+<meta property="og:description" content="<%= @name + ' ' + @tagline %>" />
+<meta property="og:image" content="<%= @header_pic %>" />
+<% end %>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'home' %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'home' %>
+<% end %>
+<% content_for :facebook do %>
+  <div id="fb-root"></div>
+  <script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+<% end %>
+
+<div class="jumbotron jumbotron-fluid" style="background-image:url('<%= @header_pic %>')"><!-- TOP BANNER -->
+  <div class="container">
+  </div>
+</div>
+<div class="container">
+  <div class="row" id="headshotName"><!-- HEADSHOT & NAME -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-1 text-center text-lg-left">
+          <h4><img src="<%= @profile_pic %>" class="profilepic rounded-circle"></h4>
+        </div>
+        <div class="col-lg-10" id="nameTagline">
+          <div class="container">
+            <div class="row text-center text-lg-left">
+              <div class="col-lg-12">
+                <h1><strong><%= @name %></strong></h1>
+              </div>
+            </div>
+            <div class="row text-center text-lg-left">
+              <div class="col-lg-12">
+                <h4><%= @tagline %></h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container thinBorders">
+      <div class="row">
+        <%= raw(@embedded_media) %>
+        <div class="col-lg-4"><!-- CONTRIBUTIONS -->
+          <div class="row" id="contributions">
+            <div class="col-12"><strong>Contributions</strong></div>
+          </div>
+          <h3 class="col-12"><strong><%= @total_monthly_btc_amount %></strong> / month</h3>
+          <div class="col-12" id="goalsRow">
+            <% if !@goal.nil? %>
+              <div class="progress" style="width:100%;">
+                <div class="progress-bar" role="progressbar" style="width: <%= @goal_progress %>" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><%= @goal_progress %></div>
+              </div>
+              <p><%= @goal.description %></p>
+            <% else %>
+              <h3 class="col-12">No Goal yet!</h3>
+              <p class="col-12">If you are the administrator, log in to fill out the correct info.</p>
+              <div class="col-12 text-center">
+                <a href="/admins/sign_in" class="btn btn-outline-dark">LOG IN</a>
+              </div>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="col-6 totalContributorsCount"><strong class="align-middle">Contributors</strong></div>
+            <div class="col-6 totalContributorsCount text-right"><h2><strong><%= @total_patrons %></strong></h2></div>
+          </div>
+          <div class="row" style="padding-bottom:10px; padding-top:5px;">
+            <div class="col-6"><strong class="align-middle">Share</strong></div>
+          </div>
+          <div class="row">
+            <!-- TODO filter based on admin settings -->
+            <div class="col-12 text-center">
+              <h5><a href="https://twitter.com/intent/tweet?url=<%= @domain %>&text=Check out <%= @name %> at <%= @domain %>" class="shareLink"><strong>Twitter</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= ERB::Util.url_encode(@domain) %>&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore shareLink"><strong>Facebook</strong></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="shareLink" id="copyLinkToClipboard" onclick="copyToClipboard()"><strong>Link</strong></a></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9"><!-- MAIN INFO -->
+          <div class="column-content maininfo">
+            <%= raw(@main_info) %>
+          </div>
+          <div class="maininfo">
+            <% @public_posts.each do |post| %>
+            <p><%= sanitize(post.content) %></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-lg-3"><!-- TIER INFO -->
+          <% if !@tiers.nil? %>
+            <% @tiers.each_with_index do |tier, index| %>
+            <div class="row column-content thinBorders">
+              <div class="col-12 text-center text-lg-left"><span class="tierTitle">Pledge</span></div>
+              <p class="col-12 text-center text-lg-left tierDescription"><span class="tierDescription"><%= @tier_display_amount[index] %></span> per month</p>
+              <div class="col-12 text-center text-lg-left tierTitle"><span class="tierTitle">Contributor</span></div>
+              <p class="col-12 text-center text-lg-left tierDescription"><span class="tierDescription"><%= @patrons[tier.id] %></span></p>
+              <p class="col-12 text-center text-lg-left"><%= tier.description %></p>
+              <div class="col-12 text-center">
+                <button id="invoice<%= index %>" type="button" class="btn btn-outline-dark paymentButton blueButton" data-toggle="modal" data-target="#tierPaymentModal" value="<%= tier.amount.fractional %>:<%= tier.amount_currency %>:<%= index %>:<%= tier.id %>:<%= tier.amount.currency.subunit_to_unit %>">
+                  JOIN <%= @tier_display_amount[index] %> TIER
+                </button>
+              </div>
+            </div>
+            <% end %>
+            <div class="modal fade" id="tierPaymentModal" tabindex="-1" role="dialog" aria-labelledby="tierPaymentModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="tierPaymentModalLabel">Subscription payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Choose your payment:</p>
+                    <form id="paymentTierButton">
+                      <% @tiers.each_with_index do |t, i| %>
+                      <p>
+                        <input type="radio" id="tierIndex<%= i %>" name="paymentTier" value="<%= t.amount.fractional %>:<%= t.amount_currency %>:<%= i %>:<%= t.id %>:<%= t.amount.currency.subunit_to_unit %>">
+                        <label for="tierIndex<%= i %>"><%= @tier_display_amount[i] %> - <%= t.description %></label>
+                      </p>
+                      <% end %>
+                      <hr>
+                      <p>Duration: &nbsp;&nbsp; <%= number_field_tag 'duration', 1, in:1..12, style: "width:2.5em;" %> months</p>
+                      <p>Total: &nbsp;&nbsp; <span id="payment_total">XXX BTC</span></p>
+                      <hr>
+                      <div class="form-group row">
+                        <label class="col-2 offset-1 col-form-label text-right" for="payeeName">Name: </label>
+                        <input class="col-7 form-control" id="payeeName" type="text">
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-2 offset-1 col-form-label text-right" for="payeeEmail">Email: </label>
+                        <input class="col-7 form-control" id="payeeEmail" type="email">
+                      </div>
+                      <hr>
+                      <p>
+                        Name & Email information is only required if you want automatic subscription reminders emails & possible refunds.
+                      </p>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <div id="linkLoader"></div>
+                    <button id="finalPayButtonClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="finalPayButton" type="button" class="btn btn-primary blueButton" onclick="getInvoice()">Go to payment</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="row col-12 column-content">
+              <h4>No Tier yet!</h4>
+              <p>If you are the administrator, log in to fill out the correct info.</p>
+              <div class="col-12 text-center">
+                <a href="/admins/sign_in" class="btn btn-outline-dark">LOG IN</a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag "home.js" %>

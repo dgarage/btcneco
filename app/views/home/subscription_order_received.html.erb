@@ -1,0 +1,104 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'home' %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'home' %>
+<% end %>
+
+<div class="container py-3">
+  <div class="row px-5 py-5">
+    <div class="col-12 text-center">
+      <h1>Thank you for your support!</h1>
+    </div>
+  </div>
+
+  <div class="row px-5">
+    <div class="col-10 mx-auto">
+      <div class="card mx-5 mb-4 shadow-sm">
+        <div class="card-header text-center pt-4">
+          <h4>Your order details</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 text-right">
+              <strong>Payment Status</strong>
+            </div>
+            <div class="col-md-6">
+              <%= @invoice.invoice_status.upcase %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right">
+              <strong>Email</strong>
+            </div>
+            <div class="col-md-6">
+              <%= @subscription.anonymous ? 'Anonymous' : @subscription.email %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right">
+              <strong>Amount Paid</strong>
+            </div>
+            <div class="col-md-6">
+              <%= @invoice.amount.format %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right">
+              <strong>Tier</strong>
+            </div>
+            <div class="col-md-6">
+              <%= @subscription.tier_id %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 text-right">
+              <strong>Next reminder date:</strong>
+            </div>
+            <div class="col-md-6">
+              <%= (@subscription.created_at + 1.month).strftime("%F") %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @anonymous_user %>
+  <div class="row px-5">
+    <div class="col-10 mx-auto">
+      <div class="card mx-5 mb-4 shadow-sm">
+        <div class="card-header text-center pt-4">
+          <h4>Your supporter page login details</h4>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-5 text-right">
+              <strong>Username</strong>
+            </div>
+            <div class="col-md-7">
+              <%= @subscription.email %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5 text-right">
+              <strong>Password</strong>
+            </div>
+            <div class="col-md-7">
+              <%= @temp_password %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="row px-5 py-5">
+    <div class="col-12 text-center">
+      <p>Click to access your Supporter perks.</p>
+      <p class="mb-4">Contact the Administrator if you have not received an email with your login info.</p>
+      <p><%= link_to 'Login', unauthenticated_root_url + 'users/sign_in', class:'btn btn-lg btn-primary' %></p>
+    </div>
+  </div>
+</div>

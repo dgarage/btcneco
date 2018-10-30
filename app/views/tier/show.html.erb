@@ -1,0 +1,36 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <%= sanitize '<h5 class="alert alert-success">'+notice+'</h5>' if notice %>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1>Tier</h1>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Description</div>
+        <div class="col-sm-5">
+          <%= @tier.description %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Amount</div>
+        <div class="col-sm-5">
+          <%= @tier.amount_cents %> <%= @tier.amount_currency %>
+        </div>
+      </div>
+      <br>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">
+          <%= link_to 'Back to all Tiers', tiers_path, class: 'btn btn-outline-dark' %>
+        </div>
+        <div>
+          <%= link_to 'Edit', edit_tier_path(@tier), class: 'btn btn-outline-primary' %>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

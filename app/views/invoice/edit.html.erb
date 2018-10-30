@@ -1,0 +1,18 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <%= link_to '←', invoice_path(@invoice), class: 'btn btn-outline-secondary' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h1>Editing Invoice</h1>
+      </div>
+
+      <%= render 'form', invoice: @invoice %>
+    </main>
+  </div>
+</div>

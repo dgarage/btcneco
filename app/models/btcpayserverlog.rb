@@ -1,0 +1,2 @@
+class Btcpayserverlog < ApplicationRecord
+end

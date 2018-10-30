@@ -1,0 +1,13 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <h2>Create New Goal</h2>
+      <%= render "goal_form", goal: @goal %>
+    </main>
+  </div>
+</div>

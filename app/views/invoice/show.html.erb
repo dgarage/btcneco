@@ -1,0 +1,78 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <%= sanitize '<h5 class="alert alert-success">'+notice+'</h5>' if notice %>
+      <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <%= link_to '←', invoices_path, class: 'btn btn-outline-secondary' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h1>Invoice details</h1>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">ID</div>
+        <div class="col-sm-5">
+          <%= @invoice.id %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">URL</div>
+        <div class="col-sm-5">
+          <%= @invoice.invoice_url %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Status</div>
+        <div class="col-sm-5">
+          <%= @invoice.invoice_status %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">InvoiceTime</div>
+        <div class="col-sm-5">
+          <%= @invoice.invoiceTime.to_i %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">ExpirationTime</div>
+        <div class="col-sm-5">
+          <%= @invoice.expirationTime.to_i %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">SubscriptionID</div>
+        <div class="col-sm-5">
+          <%= @invoice.subscription_id %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">TierID</div>
+        <div class="col-sm-5">
+          <%= @invoice.tier_id %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Amount (in cents)</div>
+        <div class="col-sm-5">
+          <%= @invoice.amount_cents %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Amount currency</div>
+        <div class="col-sm-5">
+          <%= @invoice.amount_currency %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-5 offset-sm-2">
+          <%= link_to 'Edit details', edit_invoice_path(@invoice), class: 'btn btn-outline-primary' %>&nbsp;&nbsp;
+          <%= link_to image_tag("mail.png") + ' Send to Subscriber', '#', class: 'btn btn-outline-secondary' %>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

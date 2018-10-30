@@ -1,0 +1,90 @@
+<%= form_with(model: invoice, local: true) do |form| %>
+  <% if invoice.errors.any? %>
+    <div class="col-sm-10">
+      <h3><%= pluralize(invoice.errors.count, "error") %> prohibited this invoice from being saved:</h3>
+      <ul>
+        <% invoice.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row sr-only">
+    <%= form.label :invoice_id, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoice_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :invoice_url, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoice_url, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :invoice_status, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoice_status, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :invoiceTime, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoiceTime, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :expirationTime, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :expirationTime, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :subscription_id, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.number_field :subscription_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :tier_id, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.number_field :tier_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :amount_cents, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.number_field :amount_cents, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :amount_currency, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :amount_currency, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :duration, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :duration, class: 'form-control' %>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-5 offset-sm-2">
+      <%= link_to 'Cancel', invoices_path, class: 'btn btn-outline-dark' %>&nbsp;&nbsp;
+      <%= form.submit 'Update', class: 'btn btn-outline-danger', data: { confirm: 'This will overwrite existing data. Are you sure?' } %>
+    </div>
+  </div>
+<% end %>

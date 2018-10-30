@@ -1,0 +1,49 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex flex-wrap justify-content-between flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Subscriptions</h1>
+        <%= link_to 'New Subscription', new_subscription_path, class: 'btn btn-primary' %>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Status</th>
+              <th scope="col">Expiration</th>
+              <th scope="col">Tier ID</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @subscriptions.each do |subscription| %>
+              <tr>
+                <td scope="row"><%= subscription.id.to_s %></td>
+                <td><%= subscription.name %></td>
+                <td><%= subscription.email %></td>
+                <td><span class="btn <%= (subscription.status == 'active') ? 'btn-info' : 'btn-outline' %>"><%= subscription.status %></span></td>
+                <td><%= subscription.expires_on ? subscription.expires_on.to_date : '' %></td>
+                <td><%= subscription.tier_id %></td>
+                <td>
+                  <%= link_to 'Invoices', invoices_for_subscription_path(subscription.id), class: 'btn btn-outline-primary' %>
+                  <%= link_to 'Details', subscription_path(subscription), class: 'btn btn-outline-primary' %>
+                  <%= link_to 'Delete', subscription, method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to 'New Subscription', new_subscription_path, class: 'btn btn-primary' %>
+      </div>
+    </main>
+  </div>
+</div>

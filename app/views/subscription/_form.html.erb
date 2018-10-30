@@ -1,0 +1,117 @@
+<%= form_with(model: subscription, local: true) do |form| %>
+  <% if subscription.errors.any? %>
+    <div class="col-sm-10">
+      <h3><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h3>
+      <ul>
+        <% subscription.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :name, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= form.label :email, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :email, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :last_payment_date, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.datetime_select :last_payment_date, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :last_email_reminder, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.datetime_select :last_email_reminder, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :amount_cents, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.number_field :amount_cents, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :amount_currency, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :amount_currency, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :status, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :status, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :tier_id, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.number_field :tier_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :invoice_id, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoice_id, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :invoice_url, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoice_url, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :invoice_status, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :invoice_status, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :expires_on, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :expires_on, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :uuid, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :uuid, class: 'form-control', readonly: true %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label text-right">Recurring payment url</label>
+    <div class="col-sm-5">
+      <input class="form-control" readonly="readonly" type="text" value="/subscription_link/<%= subscription.uuid %>" name="subscription[uuid]">
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="col-sm-5 offset-sm-2">
+      <%= link_to 'Cancel', subscriptions_path, class: 'btn btn-outline-dark' %>&nbsp;&nbsp;
+      <%= form.submit 'Update', class: 'btn btn-outline-danger', data: { confirm: 'This will overwrite existing data. Are you sure?' } %>
+    </div>
+  </div>
+<% end %>

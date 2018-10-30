@@ -1,0 +1,116 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <%= sanitize '<h5 class="alert alert-success">'+notice+'</h5>' if notice %>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1>Email Templates in HTML format</h1>
+      </div>
+      <%= notice %>
+      <%= form_with(model: @setting, method: :patch, url: email_templates_update_path, local: true, multipart: true) do |form| %>
+        <div class="form-group row sr-only">
+          <%= form.label :admin_id, class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-5">
+            <%= form.number_field :admin_id, class: 'form-control', placeholder: @setting.admin_id %>
+          </div>
+        </div>
+        <div class="row">
+          <p class="col-12">
+            Click the info button <span class="badge badge-info">i</span> to see the required elements for each template.
+          </p>
+        </div>
+        <br>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_invoice_email">Invoice email &nbsp;&nbsp;<span class="badge badge-info" data-toggle="collapse" data-target="#collapseInvoiceEmailInfo" aria-expanded="false" aria-controls="collapseInvoiceEmailInfo">i</span></label>
+          <div class="col-sm-6">
+            <%= form.text_area :invoice_email, rows:10, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row collapse" id="collapseInvoiceEmailInfo">
+          <div class="card card-body col-sm-8">
+            <strong>Required elements:</strong> <br>
+            @@subscriber_name@@ , @@invoice_amount@@ , @@invoice_url@@ , @@my_name@@ , @@my_url@@
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_thankyou_email">Thank you email &nbsp;&nbsp;<span class="badge badge-info" data-toggle="collapse" data-target="#collapseThankyouEmailInfo" aria-expanded="false" aria-controls="collapseThankyouEmailInfo">i</span></label>
+          <div class="col-sm-6">
+            <%= form.text_area :thankyou_email, rows:10, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row collapse" id="collapseThankyouEmailInfo">
+          <div class="card card-body col-sm-8">
+            <strong>Required elements:</strong> <br>
+            @@subscriber_name@@ , @@invoice_amount@@ , @@my_name@@ , @@my_url@@
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_reminder_email">Reminder email &nbsp;&nbsp;<span class="badge badge-info" data-toggle="collapse" data-target="#collapseReminderEmailInfo" aria-expanded="false" aria-controls="collapseReminderEmailInfo">i</span></label>
+          <div class="col-sm-6">
+            <%= form.text_area :reminder_email, rows:10, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row collapse" id="collapseReminderEmailInfo">
+          <div class="card card-body col-sm-8">
+            <strong>Required elements:</strong> <br>
+            @@subscriber_name@@ , @@payment_url@@ , @@my_name@@ , @@my_url@@
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_goodbye_email">Goodbye email &nbsp;&nbsp;<span class="badge badge-info" data-toggle="collapse" data-target="#collapseGoodbyeEmailInfo" aria-expanded="false" aria-controls="collapseGoodbyeEmailInfo">i</span></label>
+          <div class="col-sm-6">
+            <%= form.text_area :goodbye_email, rows:10, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row collapse" id="collapseGoodbyeEmailInfo">
+          <div class="card card-body col-sm-8">
+            <strong>Required elements:</strong> <br>
+            @@subscriber_name@@ , @@my_name@@ , @@my_url@@
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_user_credentials_email">User credentials email &nbsp;&nbsp;<span class="badge badge-info" data-toggle="collapse" data-target="#collapseUserCredentialsEmailInfo" aria-expanded="false" aria-controls="collapseUserCredentialsEmailInfo">i</span></label>
+          <div class="col-sm-6">
+            <%= form.text_area :user_credentials_email, rows:10, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row collapse" id="collapseUserCredentialsEmailInfo">
+          <div class="card card-body col-sm-8">
+            <strong>Required elements:</strong> <br>
+            @@subscriber_name@@ , @@subscriber_email@@, @@subscriber_password@@, @@my_name@@ , @@my_url@@
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_recurring_payment_link_email">Recurring payment email &nbsp;&nbsp;<span class="badge badge-info" data-toggle="collapse" data-target="#collapseRecurringPaymentLinkEmailInfo" aria-expanded="false" aria-controls="collapseRecurringPaymentLinkEmailInfo">i</span></label>
+          <div class="col-sm-6">
+            <%= form.text_area :recurring_payment_link_email, rows:10, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row collapse" id="collapseRecurringPaymentLinkEmailInfo">
+          <div class="card card-body col-sm-8">
+            <strong>Required elements:</strong> <br>
+            @@subscriber_name@@ , @@payment_url@@, @@my_name@@ , @@my_url@@
+          </div>
+        </div>
+
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3 text-right">
+            <%= link_to 'Back', admin_path, class: 'btn btn-outline-dark' %>&nbsp;&nbsp;
+            <%= form.submit 'Save email templates', class: 'btn btn-outline-primary', id: 'saveSettings' %>
+          </div>
+        </div>
+      <% end %>
+    </main>
+  </div>
+</div>
+<%= javascript_include_tag "admin.js" %>

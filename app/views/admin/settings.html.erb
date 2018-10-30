@@ -1,0 +1,167 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1>Admin Settings</h1>
+      </div>
+      <%= form_with(model: @setting, method: :patch, url: setting_update_path, local: true, multipart: true) do |form| %>
+        <div class="form-group row sr-only">
+          <%= form.label :admin_id, class: 'col-sm-2 col-form-label' %>
+          <div class="col-sm-7">
+            <%= form.number_field :admin_id, class: 'form-control', placeholder: @setting.admin_id %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :name, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :name, class: 'form-control', placeholder: 'Satoshi Nakamoto' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :domain, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :domain, class: 'form-control', placeholder: 'btcneco.com' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :header_pic, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.file_field :header_pic, class: 'file-field-box' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :profile_pic, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.file_field :profile_pic, class: 'file-field-box' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :tagline, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :tagline, class: 'form-control', placeholder: 'is building Bitcoin.' %>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <p class="col-12">
+            "Main Info" and "Embedded Media" can be written in HTML & can use <a href="https://getbootstrap.com/" target="_blank">Bootstrap CSS</a>.<br>
+            Inside "Embedded Media" I recommend embedding a 360 pixel height Youtube video inside an iframe with class "col-lg-8", or a similarly sized image/text.<br>
+            Example:<br>
+            <code>
+<%= '<iframe id="ytplayer" class="col-lg-8" type="text/html" height="360"' %> <br>
+<%= 'src="https://www.youtube.com/embed/CEKVCcXizzI?origin=https://btcneco.com" frameborder="0"></iframe>' %>
+            </code><br>
+            Or, a 360 pixel image inside a div with class "col-lg-8". Example:<br>
+            <code>
+            </code>
+          </p>
+        </div>
+        <br>
+        <div class="form-group row">
+          <%= form.label :main_info, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_area :main_info, class: 'form-control', placeholder: 'No content yet!', rows:20 %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :embedded_media, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_area :embedded_media, class: 'form-control', placeholder: '', rows:4 %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :currency, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.select :currency, @currencies || ['USD'], {}, {class: 'currency-field-box'} %>
+          </div>
+        </div>
+        <!--TODO Deal with the responses -->
+        <div class="form-group row">
+          <%= form.label :btcpayserver_url, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :btcpayserver_url, class: 'form-control', placeholder: 'BTCPayServer URL (e.g. https://your-btcpay.com/)' %>
+            <input id="pairing_code" class="form-control" type="text" placeholder="Pairing Code">
+            <div id="get_pairing" class="btn btn-primary" onclick="getPairing();">Pair</div>
+            Get a pairing code: 
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label text-right" for="setting_ga_script">Google Analytics script</label>
+          <div class="col-sm-7">
+            <%= form.text_area :ga_script, rows:5, class: 'form-control', placeholder: '<script async src="https://www.google......' %>
+          </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+          <p class="col-12">
+            The following email settings <strong>must</strong> be filled for BTCneco to function properly.<br>
+            Here's a more comprehensive guide: <a href="#">link</a></strong>
+          </p>
+        </div>
+        <div class="form-group row">
+          <%= form.label :origin_email, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :origin_email, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= form.label :mail_user_name, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_user_name, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :mail_password, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_password, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :mail_domain, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_domain, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :mail_address, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_address, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :mail_port, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_port, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :mail_authentication, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_authentication, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :mail_enable_starttls_auto, class: 'col-sm-2 col-form-label text-right' %>
+          <div class="col-sm-7">
+            <%= form.text_field :mail_enable_starttls_auto, class: 'form-control' %>
+          </div>
+        </div>
+        <br>
+        <div class="form-group row">
+          <div class="col-sm-3 text-right">
+            <%= link_to 'Back', admin_path, class: 'btn btn-outline-dark' %>&nbsp;&nbsp;
+            <%= form.submit 'Save settings', class: 'btn btn-outline-primary', id: 'saveSettings' %>
+          </div>
+        </div>
+      <% end %>
+    </main>
+  </div>
+</div>
+<%= javascript_include_tag "admin.js" %>

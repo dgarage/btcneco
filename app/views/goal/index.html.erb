@@ -1,0 +1,40 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <h2>Goals</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>Amount (in BTC)</th>
+              <th>Current Progress</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @goals.each do |g| %>
+            <tr>
+              <td><%= g.id.to_s %></td>
+              <td><%= g.description %></td>
+              <td><%= ((g.satoshi_amount.to_f)/10000000).to_s %></td>
+              <td>TBD</td>
+              <td>
+                <%= link_to 'Edit', edit_goal_path(g), class: 'btn btn-primary' %>
+                <%= link_to 'Delete', g, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure?'} %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= link_to 'Create new goal', new_goal_path, class: 'btn btn-primary' %>
+      </div>
+    </main>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <h3><%= notice %></h3>
+      <h2>Goal</h2>
+      <p>
+        <%= @goal.description %>
+      </p>
+      <p>
+        <%= @goal.satoshi_amount %>
+      </p>
+      <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-primary' %>
+      <%= link_to 'Back', goals_path %>
+    </main>
+  </div>
+</div>

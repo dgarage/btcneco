@@ -1,0 +1,42 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <%= sanitize '<h5 class="alert alert-success">'+notice+'</h5>' if notice %>
+      <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <%= link_to '←', posts_path, class: 'btn btn-outline-secondary' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h1>Post details</h1>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Title</div>
+        <div class="col-sm-5">
+          <%= @post.title %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Content</div>
+        <div class="col-sm-5">
+          <%= sanitize @post.content %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Tier</div>
+        <div class="col-sm-5">
+          <%= @post.tier_id %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-5 offset-sm-2">
+          <%= link_to 'Edit details', edit_post_path(@post), class: 'btn btn-outline-primary' %>&nbsp;&nbsp;
+          <%= link_to 'Back to Posts', posts_path, class: 'btn btn-outline-primary' %>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

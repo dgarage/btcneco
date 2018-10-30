@@ -1,0 +1,110 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <%= sanitize '<h5 class="alert alert-success">'+notice+'</h5>' if notice %>
+      <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <%= link_to '←', subscriptions_path, class: 'btn btn-outline-secondary' %>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h1>Subscription details</h1>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Name</div>
+        <div class="col-sm-5">
+          <%= @subscription.name %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Email</div>
+        <div class="col-sm-5">
+          <%= @subscription.email %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Last payment date</div>
+        <div class="col-sm-5">
+          <%= @subscription.last_payment_date %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Last email reminder</div>
+        <div class="col-sm-5">
+          <%= @subscription.last_email_reminder %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Amount cents</div>
+        <div class="col-sm-5">
+          <%= @subscription.amount_cents %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Amount currency</div>
+        <div class="col-sm-5">
+          <%= @subscription.amount_currency %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Status</div>
+        <div class="col-sm-5">
+          <%= @subscription.status %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Tier ID</div>
+        <div class="col-sm-5">
+          <%= @subscription.tier_id %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Invoice ID</div>
+        <div class="col-sm-5">
+          <%= @subscription.invoice_id %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Invoice URL</div>
+        <div class="col-sm-5">
+          <%= @subscription.invoice_url %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Invoice Status</div>
+        <div class="col-sm-5">
+          <%= @subscription.invoice_status %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Expiration</div>
+        <div class="col-sm-5">
+          <%= @subscription.expires_on %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">UUID</div>
+        <div class="col-sm-5">
+          <%= @subscription.uuid %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-2 text-right">Recurring payment URL</div>
+        <div class="col-sm-5">
+          /subscription_link/<%= @subscription.uuid %>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-5 offset-sm-2">
+          <%= link_to 'Edit details', edit_subscription_path(@subscription), class: 'btn btn-outline-primary' %>&nbsp;&nbsp;
+          <%= link_to image_tag("mail.png") + ' Invoices', invoices_for_subscription_path(@subscription.id), class: 'btn btn-outline-secondary' %>&nbsp;&nbsp;
+          <button class="btn btn-outline-secondary"><%= image_tag("mail.png") %> Send recurring payment link</button> &nbsp;&nbsp;
+          <%= link_to 'Create New Invoice', new_invoice_path(@subscription), class: 'btn btn-outline-primary' %>&nbsp;&nbsp;
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

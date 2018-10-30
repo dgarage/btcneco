@@ -1,0 +1,50 @@
+<%= render "dashboard_topbar" %>
+
+<div class="container-fluid admin-container">
+  <div class="row">
+
+    <%= render "dashboard_sidebar" %>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex flex-wrap justify-content-between flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1>Invoices</h1>
+        <%= link_to 'New Invoice', new_invoice_path, class: 'btn btn-primary' %>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>URL</th>
+              <th>Status</th>
+              <th>InvoiceTime</th>
+              <th>ExpirationTime</th>
+              <th>SubscriptionID</th>
+              <th>TierID</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @invoices.each do |invoice| %>
+              <tr>
+                <td><%= invoice.id.to_s %></td>
+                <td><%= link_to 'Link', invoice.invoice_url %></td>
+                <td><%= invoice.invoice_status %></td>
+                <td><%= invoice.invoiceTime.to_i %></td>
+                <td><%= invoice.expirationTime.to_i %></td>
+                <td><%= invoice.subscription_id %></td>
+                <td><%= invoice.tier_id %></td>
+                <td><%= invoice.amount.format %></td>
+                <td>
+                  <%= link_to 'Details', invoice_path(invoice), class: 'btn btn-outline-primary' %>
+                  <%= link_to 'Delete', invoice, method: :delete, class: 'btn btn-outline-danger', data: { confirm: 'Are you sure?' } %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

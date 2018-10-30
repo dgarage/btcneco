@@ -1,0 +1,57 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :title, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= form.label :content, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_area :content, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row sr-only">
+    <%= form.label :tier_id, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.text_field :tier_id, class: 'form-control' %>
+    </div>
+  </div>
+  <p>Send to Subscribers of this Tier ?</p>
+  <% @tiers.each_with_index do |tier, i| %>
+  <div class="form-group row">
+    <%= 'TierID '+ tier.id.to_s + ' : ' + tier.description + ' : ' + tier.amount.format %>&nbsp;&nbsp;&nbsp;&nbsp;
+    <%= radio_button_tag ("tier"+i.to_s).to_sym, tier.id.to_s + ':true', @tier_dist[tier.id.to_s] %>
+    <%= label_tag ("tier"+i.to_s+'yes').to_sym, 'Yes' %>&nbsp;&nbsp;
+    <%= radio_button_tag ("tier"+i.to_s).to_sym, tier.id.to_s + ':false', !@tier_dist[tier.id.to_s] %>
+    <%= label_tag ("tier"+i.to_s+'no').to_sym, 'No' %>
+  </div>
+  <% end %>
+
+  <p>Is this a public post?</p>
+  <div class="form-group row">
+    <%= form.label :public_post, class: 'col-sm-2 col-form-label text-right' %>
+    <div class="col-sm-5">
+      <%= form.radio_button :public_post, true %><%= label_tag :public_post_true, 'Yes' %>
+      <%= form.radio_button :public_post, false %><%= label_tag :public_post_false, 'No'%>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-5 offset-sm-2">
+      <%= link_to 'Cancel', posts_path, class: 'btn btn-outline-dark' %>&nbsp;&nbsp;
+      <%= form.submit 'Save', class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+<% end %>

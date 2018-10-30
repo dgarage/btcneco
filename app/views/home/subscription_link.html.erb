@@ -1,0 +1,43 @@
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'home' %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'home' %>
+<% end %>
+
+<div class="container" style="margin-top: 50px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: rgba(0,0,0,0.03);">
+        <div style="margin: 0 auto;">
+          <h5 class="modal-title" id="tierPaymentModalLabel">Subscription renewal payment</h5>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p>Your tier:</p>
+        <form id="paymentTierButton">
+          <p>
+            <input type="radio" id="tierIndex0" name="paymentTier" value="<%= @tier.amount.fractional %>:<%= @tier.amount_currency %>:0:<%= @tier.id %>:<%= @tier.amount.currency.subunit_to_unit %>" <%= 'checked="checked"' %>>
+            <label for="tierIndex0"><%= @tier_display_amount %> - <%= @tier.description %></label>
+          </p>
+          <hr>
+          <p>Duration: &nbsp;&nbsp; <%= number_field_tag 'duration', 1, in:1..12, style: "width:2.5em;" %> months</p>
+          <p>Total: &nbsp;&nbsp; <span id="payment_total"><%= @tier_display_amount %></span></p>
+          <hr>
+          <div class="form-group row">
+            <label class="col-2 offset-1 col-form-label text-right" for="payeeName">Name: </label>
+            <input class="col-7 form-control" id="payeeName" type="text" value="<%= @subscription.name %>" readonly>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 offset-1 col-form-label text-right" for="payeeEmail">Email: </label>
+            <input class="col-7 form-control" id="payeeEmail" type="email" value="<%= @subscription.email %>" readonly>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <div id="linkLoader"></div>
+        <button id="finalPayButton" type="button" class="btn btn-block btn-lg btn-primary" onclick="getInvoice()">Go to payment</button>
+      </div>
+    </div>
+  </div>
+</div>

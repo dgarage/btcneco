@@ -1,0 +1,36 @@
+<%= form_with(model: goal, local: true) do |form| %>
+  <% if goal.errors.any? %>
+    <div class="col-sm-10">
+      <h3><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h3>
+      <ul>
+        <% goal.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :description, class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-5">
+      <%= form.text_area :description, class: 'form-control', rows: '3' %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <%= form.label :satoshi_amount, class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-5">
+      <%= form.number_field :satoshi_amount, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group row sr-only">
+    <%= form.label :admin_id, class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-5">
+      <%= form.number_field :admin_id, class: 'form-control', placeholder: @goal.admin_id %>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <%= form.submit 'Save Goal', class: 'btn btn-primary', id: 'saveGoal' %>&nbsp;&nbsp;&nbsp;<%= link_to 'Cancel', goals_path %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,32 @@
+// Place all the styles related to the Admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.admin-container {
+  padding-top:43px;
+}
+
+.nav-link-side {
+  color: #212529;
+}
+
+.nav-item-side:hover {
+  background-color: white;
+}
+
+.file-field-box {
+  padding: 0.375rem 0.75rem;
+}
+
+.currency-field-box {
+  width: 25%;
+  padding: 0.375rem 0.75rem;
+}
+
+.sidebar {
+  background: linear-gradient(#f8f9fa, white);
+}
+
+.postbox {
+  margin-bottom: 10px;
+}
