@@ -1,7 +1,7 @@
 BTCneco
 ========
 
-![BTCneco logo](https://raw.githubusercontent.com/dgarage/btcneco/master/app/assets/image/BTCnecoMedia.png)
+![BTCneco logo](https://raw.githubusercontent.com/dgarage/btcneco/master/app/assets/images/BTCnecoMedia.png)
 
 Warning: This software is experimental. Any loss of real funds or data are your own responsibility!
 
