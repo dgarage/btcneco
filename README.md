@@ -1,6 +1,8 @@
 BTCneco
 ========
 
+![BTCneco logo](https://raw.githubusercontent.com/dgarage/btcneco/master/app/assets/image/BTCnecoMedia.png)
+
 Warning: This software is experimental. Any loss of real funds or data are your own responsibility!
 
 ## What is BTCneco?
@@ -11,7 +13,7 @@ BTCneco allows a way for artists, creators, content producers, programmers, etc.
 while providing a platform to manage those customers. In a more broader scope, BTC-Neco aims to eventually solve recurring payments for Bitcoin.
 
 The name comes from the "Maneki-Neko", a Japanese lucky charm in the shape of a cat or "Neko" in Japanese,
-commonly placed in front of shops, which beckons customers to come inside the owner's shop. [wikipedia](https://en.wikipedia.org/wiki/Maneki-neko).
+commonly placed in front of shops, which beckons customers to come inside the owner's shop. ([wikipedia](https://en.wikipedia.org/wiki/Maneki-neko))
 
 BTCneco functions as an app for [BTCPay Server](https://github.com/btcpayserver/). In a nutshell, BTCPay Server is a free and open-source 
 cryptocurrency payment server that allows you to receive Bitcoin directly, with no fees.
@@ -45,4 +47,4 @@ Top header pic is a Bootstrap jumbotron, which is locked at 355px height.
 
 ## License
 
-This work is licensed under [MIT](LICENSE).
+This work is licensed under [MIT](https://mit-license.org/).
