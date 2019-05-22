@@ -30,6 +30,7 @@ class AdminController < ApplicationController
   def settings
     @currencies = ['USD', 'JPY', 'BTC']
     @setting = current_admin.setting
+    @neco_pic_path = '<div class="col-lg-8"><img src="' + ActionController::Base.helpers.asset_path("BTCnecoMedia.png") + '" ></div>'
   end
 
   def settings_update

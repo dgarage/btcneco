@@ -50,14 +50,15 @@
         <div class="row">
           <p class="col-12">
             "Main Info" and "Embedded Media" can be written in HTML & can use <a href="https://getbootstrap.com/" target="_blank">Bootstrap CSS</a>.<br>
-            Inside "Embedded Media" I recommend embedding a 360 pixel height Youtube video inside an iframe with class "col-lg-8", or a similarly sized image/text.<br>
-            Example:<br>
+            Sample for a Youtube video in "Embedded Media":<br>
             <code>
-<%= '<iframe id="ytplayer" class="col-lg-8" type="text/html" height="360"' %> <br>
-<%= 'src="https://www.youtube.com/embed/CEKVCcXizzI?origin=https://btcneco.com" frameborder="0"></iframe>' %>
-            </code><br>
-            Or, a 360 pixel image inside a div with class "col-lg-8". Example:<br>
+<%= '<iframe id="ytplayer" class="col-lg-8" type="text/html" height="360" frameborder="0"' %> <br>
+<%= 'src="https://www.youtube.com/embed/CEKVCcXizzI?origin=https://btcneco.com"></iframe>' %>
+            </code>
+            <br>
+            Sample for an image inside a div with class "col-lg-8". Example:<br>
             <code>
+<%= '<div class="col-lg-8"><img src="https://raw.githubusercontent.com/dgarage/btcneco/master/app/assets/images/BTCnecoMedia.png"></div>' %>
             </code>
           </p>
         </div>
