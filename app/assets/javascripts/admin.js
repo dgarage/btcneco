@@ -2,10 +2,7 @@ function getPairing() {
   var ret = null;
   var pairing_url = $("#setting_btcpayserver_url").val();
   var pairing_code = $("#pairing_code").val();
-  console.log(pairing_url);
-  console.log(pairing_code);
   var data = JSON.stringify([pairing_url, pairing_code]);
-  console.log(data);
   $.ajax({
     async: true,
     cache: false,
@@ -23,3 +20,20 @@ function getPairing() {
   });
   return ret;
 }
+
+function hidePaircode() {
+  $("#setting_btcpayserver_url").prop('disabled', true);
+  $("#pairing_code").prop('disabled', true);
+}
+
+function changeLink() {
+  $("#get_pairing_code").prop("href", $("#setting_btcpayserver_url").val());
+  $("#get_pairing_code").prop("text", $("#setting_btcpayserver_url").val());
+}
+
+$(function(){
+  changeLink();
+  $("#setting_btcpayserver_url").on("change paste keyup", function() {
+    changeLink();
+  });
+});

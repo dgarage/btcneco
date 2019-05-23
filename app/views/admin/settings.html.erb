@@ -87,8 +87,8 @@
           <div class="col-sm-7">
             <%= form.text_field :btcpayserver_url, class: 'form-control', placeholder: 'BTCPayServer URL (e.g. https://your-btcpay.com/)' %>
             <input id="pairing_code" class="form-control" type="text" placeholder="Pairing Code">
-            <div id="get_pairing" class="btn btn-primary" onclick="getPairing();">Pair</div>
-            Get a pairing code: 
+            <div id="pairing_link"><div id="get_pairing" class="btn btn-primary" onclick="getPairing();">Pair</div>
+              Get a pairing code: <a id="get_pairing_code" target="_blank"></a></div>
           </div>
         </div>
         <div class="form-group row">
