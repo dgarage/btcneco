@@ -16,14 +16,16 @@ function getPairing() {
       console.log("SUCCESS");
       console.log(result);
       ret = result;
+      hidePaircode(result[0]["token"]);
     }
   });
   return ret;
 }
 
-function hidePaircode() {
+function hidePaircode(token) {
   $("#setting_btcpayserver_url").prop('disabled', true);
   $("#pairing_code").prop('disabled', true);
+  $("#pairing_code").prop('text', "Pairing complete. Click to initiate new pairing.");
 }
 
 function changeLink() {
