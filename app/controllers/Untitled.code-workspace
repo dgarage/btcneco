@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "/Users/anditto-heristyo/ruby_projects/btcneco"
+		},
+		{
+			"name": "SSH FS - btcpay_at_gco",
+			"uri": "ssh://btcpay_at_gco/"
+		}
+	],
+	"settings": {}
+}

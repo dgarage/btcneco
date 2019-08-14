@@ -28,6 +28,13 @@ function hidePaircode(token) {
   $("#pairing_code").prop('text', "Pairing complete. Click to initiate new pairing.");
 }
 
+function showPaircode() {
+  $("#setting_btcpayserver_url").prop('disabled', false);
+  $("#pairing_code").prop('disabled', false);
+  $("#pairing_code").prop('text', "");
+  $("#pairing_code").prop('placeholder', "Pairing Code");
+}
+
 function changeLink() {
   $("#get_pairing_code").prop("href", $("#setting_btcpayserver_url").val());
   $("#get_pairing_code").prop("text", $("#setting_btcpayserver_url").val());
@@ -37,5 +44,10 @@ $(function(){
   changeLink();
   $("#setting_btcpayserver_url").on("change paste keyup", function() {
     changeLink();
+  });
+  $("#pairing_code").click(function() {
+    if ($(this).prop("disabled")) {
+      showPaircode();
+    }
   });
 });
