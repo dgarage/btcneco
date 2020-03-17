@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.2.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.3.6'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12.2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -17,7 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 # Devise for Admin restriction
-gem 'devise'
+gem 'devise', '~> 4.7.1'
 
 # Bitpay stuff
 gem 'bitpay-sdk', :require => 'bitpay_sdk', :git => 'https://github.com/anditto/ruby-client.git'
