@@ -7,7 +7,7 @@ Warning: This software is experimental. Any loss of real funds or data are your 
 
 ## What is BTCneco?
 
-BTCneco is a Bitcoin-based Newly Experimental Crowdfunding Organizer (NECO).
+BTCneco is a Bitcoin-based Non-censorable Experimental Crowdfunding Organizer (NECO).
 
 BTCneco allows a way for artists, creators, content producers, programmers, etc. to fund themselves directly by crowdfunding through Bitcoin, 
 while providing a platform to manage those customers. In a more broader scope, BTC-Neco aims to eventually solve recurring payments for Bitcoin.
